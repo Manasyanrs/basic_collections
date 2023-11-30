@@ -1,3 +1,7 @@
+import random
+from typing import List
+
+
 def get_input_parameters():
     """
     Получаем список видеокарт
@@ -5,10 +9,17 @@ def get_input_parameters():
     :return: набор видеокарт, например: [3070, 2060, 3090, 3070, 3090]
     :rtype: List[int]
     """
-    # TODO: в этой функции пишем весь необходимый код для
-    #  получения входных параметров.
-    #  Логику расчётов тут не программируем
-    pass
+    try:
+        input_number = int(input("Кол-во видеокарт: "))
+        if input_number <= 0:
+            raise ValueError
+        result = [random.randint(1000, 9999) for _ in range(input_number)]
+        for i in range(1, input_number + 1):
+            print(f"{i} Видеокарта: {result[i - 1]}")
+        return result
+    except ValueError:
+        print("Введите только целочисленное положительное число.")
+        get_input_parameters()
 
 
 def display_result(old_video_cards, new_video_cards):
@@ -20,13 +31,16 @@ def display_result(old_video_cards, new_video_cards):
     :param new_video_cards: новый набор видеокарт, например: [3070, 2060, 3070]
     :type new_video_cards: List[int]
     """
-    # TODO: в этой функции пишем весь необходимый код
-    #  для вывода результата в нужном формате.
-    #  Логику расчётов тут не программируем
-    pass
+    print("\nСтарый список видеокарт: ", end="")
+    for i in old_video_cards:
+        print(i, end=" ")
+
+    print("\nНовый список видеокарт: ", end="")
+    for i in new_video_cards:
+        print(i, end=" ")
 
 
-def select_video_cards(video_cards):
+def select_video_cards(video_cards: List[int]):
     """
     Удаляем из списка видеокарт наибольшие элементы.
 
@@ -36,13 +50,10 @@ def select_video_cards(video_cards):
     :return: набор оставшихся видеокарт, например: [3070, 2060, 3070]
     :rtype: List[int]
     """
-    # TODO: в этой функции пишем логику удаление из списка видеокарт наибольшие элементы.
-    #  print'ов и input'ов тут не должно быть.
-    #  Функция на вход принимает ранее полученные данные
-    #  (из функции get_input_parameters).
-    #  Функция на выход отдаёт результат необходимый для отображения работы программы,
-    #  который будет передан в функцию display_result.
-    pass
+    max_val = max(video_cards)
+    copy_obj = video_cards.copy()
+    [copy_obj.remove(max_val) for _ in range(copy_obj.count(max_val))]
+    return copy_obj
 
 
 if __name__ == '__main__':

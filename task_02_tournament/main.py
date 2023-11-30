@@ -1,3 +1,6 @@
+from typing import List
+
+
 def display_result(participants_names):
     """
     Выводим список имён участников в первый день
@@ -5,13 +8,10 @@ def display_result(participants_names):
     :param participants_names: список имён участников, например: ["Артемий", "Влад", "Дима", "Женя"]
     :type participants_names: List[str]
     """
-    # TODO: в этой функции пишем весь необходимый код
-    #  для вывода результата в нужном формате.
-    #  Логику расчётов тут не программируем
-    pass
+    print(f"Первый день: {participants_names}")
 
 
-def get_participants_names(names):
+def get_participants_names(names) -> List[str]:
     """
     Получаем элементы списка только с чётными индексами.
 
@@ -21,12 +21,7 @@ def get_participants_names(names):
     :return: список имён с чётными индексами , например: ["Артемий", "Влад", "Дима", "Женя"]
     :rtype: List[str]
     """
-    # TODO: в этой функции получаем элементы списка только с чётными индексами..
-    #  print'ов и input'ов тут не должно быть.
-    #  Функция на вход принимает ранее инициализированные данные
-    #  Функция на выход отдаёт результат необходимый для отображения работы программы,
-    #  который будет передан в функцию display_result.
-    pass
+    return [names[name] for name in range(0, len(names), 2)]
 
 
 if __name__ == '__main__':
