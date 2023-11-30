@@ -5,10 +5,15 @@ def get_input_parameters():
     :return: добавляемые фильмы, например: ["Леон", "Безумный Макс", "Мементо", "Царь горы"]
     :rtype: List[str]
     """
-    # TODO: в этой функции пишем весь необходимый код для
-    #  получения входных параметров.
-    #  Логику расчётов тут не программируем
-    pass
+    try:
+        count_film = int(input("Сколько фильмов хотите добавить? "))
+        if count_film <= 0:
+            raise ValueError
+    except ValueError:
+        print("Введите только целочисленное положительное число.")
+        get_input_parameters()
+
+    return [input("Введите название фильма: ") for _ in range(count_film)]
 
 
 def display_result(favorite_films, errors):
@@ -20,10 +25,16 @@ def display_result(favorite_films, errors):
     :param errors: список ненайденных фильмов, например: ["Безумный Макс", "Царь горы"]
     :type errors: List[str]
     """
-    # TODO: в этой функции пишем весь необходимый код
-    #  для вывода результата в нужном формате.
-    #  Логику расчётов тут не программируем
-    pass
+    print()
+    for film in errors:
+        print(f"Ошибка: фильма {film} у нас нет :(")
+
+    print(f"Ваш список любимых фильмов: ", end="")
+    for film in favorite_films:
+        if film != favorite_films[-1]:
+            print(film, end=", ")
+        else:
+            print(film, end="")
 
 
 def add_favorite_film(new_favorite_films, available_films):
@@ -41,13 +52,15 @@ def add_favorite_film(new_favorite_films, available_films):
              например: (["Леон", "Мементо"], ["Безумный Макс", "Царь горы"])
     :rtype: Tuple[List[str], List[str]]
     """
-    # TODO: в этой функции пишем логику добавлениея фильмов в список "любимых".
-    #  print'ов и input'ов тут не должно быть.
-    #  Функция на вход принимает ранее полученные данные
-    #  (из функции get_input_parameters).
-    #  Функция на выход отдаёт результат необходимый для отображения работы программы,
-    #  который будет передан в функцию display_result.
-    pass
+    error_films = []
+    my_favorite = []
+
+    for film in new_favorite_films:
+        if film not in available_films:
+            error_films.append(film)
+        else:
+            my_favorite.append(film)
+    return my_favorite, error_films
 
 
 if __name__ == '__main__':

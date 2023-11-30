@@ -5,10 +5,9 @@ def get_input_parameters():
     :return: неотсортированный список чисел, например: [1, 4, -3, 0, 10]
     :rtype: List[int]
     """
-    # TODO: в этой функции пишем весь необходимый код для
-    #  получения входных параметров.
-    #  Логику расчётов тут не программируем
-    pass
+    initial_list = [1, 4, -3, 0, 10]
+    print(f"Изначальный список: {initial_list}")
+    return initial_list
 
 
 def display_result(sorted_list):
@@ -18,10 +17,7 @@ def display_result(sorted_list):
     :param sorted_list: отсортированный список, например: [-3, 0, 1, 4, 10]
     :type sorted_list: List[int]
     """
-    # TODO: в этой функции пишем весь необходимый код
-    #  для вывода результата в нужном формате.
-    #  Логику расчётов тут не программируем
-    pass
+    print(f"\nОтсортированный список: {sorted_list}")
 
 
 def sort_list(original_list):
@@ -34,13 +30,15 @@ def sort_list(original_list):
     :return: отсортированный, например: [-3, 0, 1, 4, 10]
     :rtype: List[int]
     """
-    # TODO: в этой функции пишем логику сортировки списка.
-    #  print'ов и input'ов тут не должно быть.
-    #  Функция на вход принимает ранее полученные данные
-    #  (из функции get_input_parameters).
-    #  Функция на выход отдаёт результат необходимый для отображения работы программы,
-    #  который будет передан в функцию display_result.
-    pass
+    # return sorted(original_list)
+    for i in range(len(original_list) - 1):
+        for j in range(i + 1, len(original_list)):
+            if original_list[i] > original_list[j]:
+                tmp = original_list[i]
+                original_list[i] = original_list[j]
+                original_list[j] = tmp
+
+    return original_list
 
 
 if __name__ == '__main__':

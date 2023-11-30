@@ -7,10 +7,31 @@ def get_input_parameters():
              например: [[165, 163, 160, 160, 157, 157, 155, 154], 162]
     :rtype: List[List[int], int]
     """
-    # TODO: в этой функции пишем весь необходимый код для
-    #  получения входных параметров.
-    #  Логику расчётов тут не программируем
-    pass
+    try:
+        container = [[]]
+        input_number = int(input("Кол-во контейнеров: "))
+        if input_number <= 0:
+            raise ValueError
+        for iter_count in range(input_number):
+            container_weight = int(input("Введите вес контейнера: "))
+            if 0 >= container_weight > 200:
+                raise ValueError
+            else:
+                container[0].append(container_weight)
+
+        new_container_weight = int(input("Введите вес нового контейнера: "))
+        if 0 >= new_container_weight > 200:
+            raise ValueError
+        else:
+            container.append(new_container_weight)
+
+        container[0].sort()
+        container[0].reverse()
+        return container
+
+    except ValueError:
+        print("Введите только целочисленное положительное число которое не большее 200.")
+        get_input_parameters()
 
 
 def display_result(serial_number_new_container):
@@ -20,10 +41,7 @@ def display_result(serial_number_new_container):
     :param serial_number_new_container: порядковый номер нового контейнера, например: 3
     :type serial_number_new_container: int
     """
-    # TODO: в этой функции пишем весь необходимый код
-    #  для вывода результата в нужном формате.
-    #  Логику расчётов тут не программируем
-    pass
+    print(f"Номер, куда встанет новый контейнер: {serial_number_new_container}")
 
 
 def search_serial_number_new_container(list_container_weights, new_container_weight):
@@ -38,13 +56,8 @@ def search_serial_number_new_container(list_container_weights, new_container_wei
     :return: порядковый номер нового контейнера, например: 3
     :rtype: int
     """
-    # TODO: в этой функции пишем логику поиска куда вставим новый контейнер.
-    #  print'ов и input'ов тут не должно быть.
-    #  Функция на вход принимает ранее полученные данные
-    #  (из функции get_input_parameters).
-    #  Функция на выход отдаёт результат необходимый для отображения работы программы,
-    #  который будет передан в функцию display_result.
-    pass
+
+    return len([index for index in list_container_weights if index >= new_container_weight]) + 1
 
 
 if __name__ == '__main__':
